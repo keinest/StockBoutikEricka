@@ -2,7 +2,7 @@
   "experimentalServices": {
     "frontend": {
       "entrypoint": "StockBoutik",
-      "framework": "fastAPI",     
+      "framework": "next.js",     
       "routePrefix": "/"
     },
     "backend": {
