@@ -1,0 +1,1 @@
+"""StockBoutik backend package."""

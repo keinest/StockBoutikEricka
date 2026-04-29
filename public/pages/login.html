@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockBoutik | Connexion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/login.css">
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="auth-panel auth-panel-brand">
+        <a class="brand brand-light" href="index.html">
+          <span class="brand-mark">SB</span>
+          <span>
+            <strong>StockBoutik</strong>
+            <small>interface pour boutique moderne</small>
+          </span>
+        </a>
+
+        <div class="auth-copy">
+          <p class="eyebrow">Connexion securisee</p>
+          <h1>Retrouvez votre espace de gestion en quelques secondes.</h1>
+          <p>
+            Connectez-vous pour consulter vos stocks, suivre les ventes du jour
+            et superviser vos boutiques depuis un tableau de bord centralise.
+          </p>
+        </div>
+
+        <div class="auth-highlights">
+          <article>
+            <strong>Alertes stock</strong>
+            <span>Reperez rapidement les produits en rupture imminente.</span>
+          </article>
+          <article>
+            <strong>Suivi ventes</strong>
+            <span>Visualisez les transactions recentes et l'evolution du chiffre.</span>
+          </article>
+          <article>
+            <strong>Multi-boutiques</strong>
+            <span>Gardez une vue globale sur tous vos points de vente.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="auth-panel auth-panel-form">
+        <div class="auth-card">
+          <div class="auth-card-head">
+            <p class="eyebrow">Acces utilisateur</p>
+            <h2>Connexion</h2>
+            <p>Le formulaire est branche sur `POST /api/v1/auth/login` cote FastAPI.</p>
+          </div>
+
+          <form class="auth-form" id="login-form" action="#" method="post">
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="admin@stockboutik.com" required>
+            </label>
+
+            <label>
+              <span>Mot de passe</span>
+              <input type="password" name="password" placeholder="Votre mot de passe" required>
+            </label>
+
+            <div class="inline-meta">
+              <label class="checkbox-row">
+                <input type="checkbox" name="remember_me">
+                <span>Se souvenir de moi</span>
+              </label>
+              <a href="signin.html">Creer un compte</a>
+            </div>
+
+            <p class="form-feedback" id="login-feedback" hidden></p>
+
+            <button class="button button-primary button-block" type="submit">Entrer dans le dashboard</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/login.js"></script>
+  </body>
+</html>

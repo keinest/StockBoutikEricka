@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockBoutik | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+  </head>
+  <body>
+    <main class="dashboard-shell">
+      <aside class="dashboard-sidebar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">SB</span>
+          <span>
+            <strong>StockBoutik</strong>
+            <small>dashboard boutique</small>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav">
+          <a class="is-active" href="#overview">Vue generale</a>
+          <a href="#operations">Saisie</a>
+          <a href="#analytics">Statistiques</a>
+          <a href="#produits">Produits</a>
+          <a href="#stock">Stock</a>
+          <a href="#ventes">Ventes</a>
+          <a href="#boutiques">Boutiques</a>
+          <a href="#utilisateurs">Utilisateurs</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-content">
+        <header class="dashboard-header" id="overview">
+          <div>
+            <p class="eyebrow">Tableau de bord</p>
+            <h1>Vision globale de l'activite commerciale.</h1>
+            <p class="dashboard-subtitle" id="dashboard-subtitle">Chargement des donnees depuis l'API...</p>
+          </div>
+
+          <div class="header-actions">
+            <button class="button button-secondary" type="button" id="refresh-dashboard">Actualiser</button>
+            <button class="button button-secondary" type="button" id="logout-button">Deconnexion</button>
+            <a class="button button-primary" href="signin.html">Ajouter une boutique</a>
+          </div>
+        </header>
+
+        <section class="metrics-grid">
+          <article class="metric-card">
+            <span>Chiffre d'affaires total</span>
+            <strong id="metric-sales-amount">0 FCFA</strong>
+            <small id="metric-average-ticket">Ticket moyen: 0 FCFA</small>
+          </article>
+
+          <article class="metric-card">
+            <span>Produits references</span>
+            <strong id="metric-products-count">0</strong>
+            <small id="metric-active-products">0 produits actifs</small>
+          </article>
+
+          <article class="metric-card">
+            <span>Alertes stock</span>
+            <strong id="metric-alerts-count">0</strong>
+            <small id="metric-stock-total">0 unites en stock</small>
+          </article>
+
+          <article class="metric-card">
+            <span>Boutiques actives</span>
+            <strong id="metric-stores-count">0</strong>
+            <small id="metric-users-label">0 utilisateur</small>
+          </article>
+        </section>
+
+        <p class="dashboard-feedback" id="dashboard-feedback" hidden></p>
+
+        <section class="panel" id="operations">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Saisie rapide</p>
+              <h2>Ajouter des donnees metier</h2>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <form class="entity-form" id="product-form">
+              <div class="form-card-head">
+                <h3>Nouveau produit</h3>
+                <p>Alimente le catalogue de vente.</p>
+              </div>
+              <label><span>Nom</span><input type="text" name="name" required></label>
+              <label><span>Categorie</span><input type="text" name="category" required></label>
+              <label><span>SKU</span><input type="text" name="sku"></label>
+              <label><span>Description</span><input type="text" name="description"></label>
+              <label><span>Prix d'achat</span><input type="number" step="0.01" min="0.01" name="purchase_price" required></label>
+              <label><span>Prix de vente</span><input type="number" step="0.01" min="0.01" name="sale_price" required></label>
+              <label class="checkbox-inline"><input type="checkbox" name="is_active" checked><span>Produit actif</span></label>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="button button-primary button-block" type="submit">Ajouter le produit</button>
+            </form>
+
+            <form class="entity-form" id="inventory-form">
+              <div class="form-card-head">
+                <h3>Nouveau stock</h3>
+                <p>Associe un produit a une boutique.</p>
+              </div>
+              <label><span>Produit</span><select name="product_id" id="inventory-product-select" required></select></label>
+              <label><span>Boutique</span><select name="store_id" id="inventory-store-select" required></select></label>
+              <label><span>Quantite</span><input type="number" min="0" name="quantity" required></label>
+              <label><span>Seuil d'alerte</span><input type="number" min="0" name="alert_threshold" value="5" required></label>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="button button-primary button-block" type="submit">Ajouter le stock</button>
+            </form>
+
+            <form class="entity-form" id="sale-form">
+              <div class="form-card-head">
+                <h3>Nouvelle vente</h3>
+                <p>Enregistre une transaction et le chiffre.</p>
+              </div>
+              <label><span>Produit</span><select name="product_id" id="sale-product-select" required></select></label>
+              <label><span>Boutique</span><select name="store_id" id="sale-store-select" required></select></label>
+              <label><span>Utilisateur</span><select name="user_id" id="sale-user-select" required></select></label>
+              <label><span>Client</span><input type="text" name="customer_name"></label>
+              <label><span>Quantite</span><input type="number" min="1" name="quantity" required></label>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="button button-primary button-block" type="submit">Ajouter la vente</button>
+            </form>
+
+            <form class="entity-form" id="store-form">
+              <div class="form-card-head">
+                <h3>Nouvelle boutique</h3>
+                <p>Ajoute un nouveau point de vente.</p>
+              </div>
+              <label><span>Nom</span><input type="text" name="name" required></label>
+              <label><span>Ville</span><input type="text" name="town" required></label>
+              <label><span>Adresse</span><input type="text" name="address" required></label>
+              <label><span>Statut</span><input type="text" name="status" value="active" required></label>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="button button-primary button-block" type="submit">Ajouter la boutique</button>
+            </form>
+
+            <form class="entity-form" id="user-form">
+              <div class="form-card-head">
+                <h3>Nouvel utilisateur</h3>
+                <p>Ajoute un membre a une boutique.</p>
+              </div>
+              <label><span>Nom</span><input type="text" name="name" required></label>
+              <label><span>Prenom</span><input type="text" name="surname" required></label>
+              <label><span>Email</span><input type="email" name="email" required></label>
+              <label><span>Telephone</span><input type="text" name="phone_number" required></label>
+              <label><span>Role</span><input type="text" name="role" value="manager" required></label>
+              <label><span>Ville</span><input type="text" name="town" required></label>
+              <label><span>Adresse</span><input type="text" name="address" required></label>
+              <label><span>Mot de passe</span><input type="password" name="password" required></label>
+              <label><span>Boutique</span><select name="store_id" id="user-store-select" required></select></label>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="button button-primary button-block" type="submit">Ajouter l'utilisateur</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel" id="analytics">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Analyse descriptive</p>
+              <h2>Statistiques et graphiques</h2>
+            </div>
+            <span class="badge">Lecture business</span>
+          </div>
+
+          <div class="analytics-grid">
+            <article class="chart-card">
+              <div class="chart-head">
+                <h3>Chiffre par jour</h3>
+                <p>Distribution hebdomadaire des ventes.</p>
+              </div>
+              <div class="bar-chart" id="sales-chart"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-head">
+                <h3>Produits par categorie</h3>
+                <p>Poids du catalogue par segment.</p>
+              </div>
+              <div class="horizontal-chart" id="category-chart"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-head">
+                <h3>Stock par boutique</h3>
+                <p>Volume disponible sur les points de vente.</p>
+              </div>
+              <div class="horizontal-chart" id="stock-store-chart"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-head">
+                <h3>Top produits vendus</h3>
+                <p>References les plus sollicitees.</p>
+              </div>
+              <div class="horizontal-chart" id="top-products-chart"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel panel-large" id="ventes">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Ventes</p>
+                <h2>Transactions recentes</h2>
+              </div>
+              <span class="badge">Temps reel</span>
+            </div>
+
+            <div class="timeline-list" id="sales-list">
+              <div>
+                <strong>Chargement...</strong>
+                <span>Recuperation des ventes recentes.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel" id="stock">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Stock</p>
+                <h2>Seuils critiques</h2>
+              </div>
+            </div>
+
+            <div class="alert-list" id="alerts-list">
+              <div>
+                <strong>Chargement...</strong>
+                <span>Verification des alertes de stock.</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel" id="produits">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Produit</p>
+              <h2>Catalogue recent</h2>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Produit</th>
+                  <th>Categorie</th>
+                  <th>Prix</th>
+                  <th>Disponibilite</th>
+                </tr>
+              </thead>
+              <tbody id="products-body">
+                <tr>
+                  <td colspan="5">Chargement des produits...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Stock</p>
+              <h2>Inventaire detaille</h2>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Boutique</th>
+                  <th>Quantite</th>
+                  <th>Seuil</th>
+                  <th>Etat</th>
+                </tr>
+              </thead>
+              <tbody id="inventories-body">
+                <tr>
+                  <td colspan="5">Chargement du stock...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel" id="boutiques">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Boutique</p>
+                <h2>Reseau actif</h2>
+              </div>
+            </div>
+
+            <div class="store-grid" id="stores-grid">
+              <div class="store-card">
+                <strong>Chargement...</strong>
+                <span>Recuperation des boutiques.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel" id="utilisateurs">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Utilisateur</p>
+                <h2>Equipe et permissions</h2>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Role</th>
+                    <th>Boutique</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody id="users-body">
+                  <tr>
+                    <td colspan="4">Chargement des utilisateurs...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/dashboard.js"></script>
+  </body>
+</html>

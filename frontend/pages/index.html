@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockBoutik | Gestion moderne de boutique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/index.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">SB</span>
+          <span>
+            <strong>StockBoutik</strong>
+            <small>gestion de stock et ventes</small>
+          </span>
+        </a>
+
+        <nav class="site-nav">
+          <a href="#fonctionnalites">Fonctionnalites</a>
+          <a href="#structure">Architecture</a>
+          <a href="login.html">Connexion</a>
+          <a class="button button-primary" href="signin.html">Creer un compte</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <h1>Pilotez votre boutique, vos produits et vos ventes depuis une interface claire.</h1>
+            <p class="hero-text">
+              StockBoutik centralise les cinq entites clefs du projet:
+              <strong>Utilisateur</strong>, <strong>Produit</strong>,
+              <strong>Vente</strong>, <strong>Stock</strong> et <strong>Boutique</strong>.
+              Le front est pense pour se connecter ensuite a une API FastAPI propre et modulaire.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="dashboard.html">Voir le tableau de bord</a>
+              <a class="button button-secondary" href="signin.html">Commencer l'onboarding</a>
+            </div>
+
+            <div class="hero-stats">
+              <article>
+                <strong>5 tables</strong>
+                <span>modelees cote metier</span>
+              </article>
+              <article>
+                <strong>3 ecrans</strong>
+                <span>landing, auth, dashboard</span>
+              </article>
+              <article>
+                <strong>100% responsive</strong>
+                <span>desktop, tablette et mobile</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-card card-glow">
+              <div class="hero-card-top">
+                <span class="badge">Vue business</span>
+                <span class="muted">Aujourd'hui</span>
+              </div>
+
+              <div class="hero-grid">
+                <article>
+                  <span>Chiffre du jour</span>
+                  <strong>1 284 000 FCFA</strong>
+                </article>
+                <article>
+                  <span>Produits en alerte</span>
+                  <strong>09</strong>
+                </article>
+                <article>
+                  <span>Ventes en cours</span>
+                  <strong>48</strong>
+                </article>
+                <article>
+                  <span>Boutiques actives</span>
+                  <strong>04</strong>
+                </article>
+              </div>
+
+              <div class="hero-mini-table">
+                <div>
+                  <span>Produit</span>
+                  <span>Stock</span>
+                </div>
+                <div>
+                  <span>Huile 1L</span>
+                  <span class="danger">Critique</span>
+                </div>
+                <div>
+                  <span>Riz parfum</span>
+                  <span class="warning">Bas</span>
+                </div>
+                <div>
+                  <span>Boisson malt</span>
+                  <span class="success">Stable</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="fonctionnalites">
+          <div class="section-heading">
+            <h2>Une interface alignee sur les besoins metier du projet.</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-index">01</span>
+              <h3>Utilisateurs</h3>
+              <p>Gestion des profils, roles, affectations par boutique et suivi des acces.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-index">02</span>
+              <h3>Produits</h3>
+              <p>Catalogue clair, prix, categorie, disponibilite et visualisation rapide des references.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-index">03</span>
+              <h3>Ventes</h3>
+              <p>Historique recent, resume du chiffre d'affaires et indicateurs de performance en direct.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-index">04</span>
+              <h3>Stock</h3>
+              <p>Alerte sur les seuils critiques, quantites par boutique et suivi des mouvements.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-index">05</span>
+              <h3>Boutiques</h3>
+              <p>Vue multi-sites pour superviser les points de vente, les equipes et les stocks.</p>
+            </article>
+          </div>
+        </section>
+
+        
+      </main>
+    </div>
+  </body>
+  
+</html>
