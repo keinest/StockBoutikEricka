@@ -4,9 +4,9 @@
     { "src": "backend/app/main.py", "use": "@vercel/python" }
   ],
   "routes": [
-    { "handle": "filesystem" },
     { "src": "/api/(.*)", "dest": "backend/app/main.py" },
-    { "src": "/", "dest": "/frontend/pages/index.html" },
+    { "src": "/styles/(.*)", "dest": "/frontend/styles/$1" },
+    { "src": "/scripts/(.*)", "dest": "/frontend/scripts/$1" },
     { "src": "/(.*)", "dest": "/frontend/pages/$1" }
   ]
 }
