@@ -1,13 +1,22 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "entrypoint": "StockBoutik",
-      "framework": "next.js",     
-      "routePrefix": "/"
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
     },
-    "backend": {
-      "entrypoint": "api/index.py",
-      "routePrefix": "/api"
+    {
+      "src": "backend/app/main.py",
+      "use": "@vercel/python"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/app/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
 }
